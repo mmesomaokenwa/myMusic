@@ -1,0 +1,56 @@
+.track-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+    border-radius: var(--border-radius);
+    background-color: rgba(35, 35, 35, .5);
+    color: #B8B8B8;
+    font-weight: 500;
+    font-size: .85rem;
+    cursor: pointer;
+    transition: all .3s ease;
+
+    &:focus, &:hover {
+        background-color: rgb(35, 35, 35);
+    }
+}
+
+.track-item .track-info {
+    width: 60%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.track-item .track-img {
+    width: 30px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+
+.artist-and-title {
+    width: 75%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.track-play-btn, .track-pause-btn {
+    padding: .5rem;
+    background: transparent;
+    color: #B8B8B8;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+
+    &:hover, &:focus {
+        transform: scale(1.1);
+        color: white;
+    }
+}
+
+.track-number {
+    font-size: 1.25rem;
+}

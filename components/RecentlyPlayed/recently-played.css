@@ -1,0 +1,129 @@
+.recently-played-aside {
+    width: 250px;
+    order: 3;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    margin-right: -2rem;
+    justify-content: space-between;
+    border-radius: var(--border-radius);
+    background-color: #111111;
+}
+
+.recently-played-section {
+    flex-grow: 1;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.recently-played-section h2 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #B8B8B8;
+}
+
+ .mini-music-player {
+    position: relative;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: var(--border-radius);
+    border: 1px solid grey;
+    padding: 1rem .5rem;
+    z-index: 1;
+    overflow: hidden;
+    background-image: url('https://i.scdn.co/image/ab67616d00001e021a0323cc23419360a34a3ace');
+    background-size: cover;
+
+    &::before {
+        position: absolute;
+        content: '';
+        inset: 0;
+        backdrop-filter: blur(6px);
+        z-index: -1;
+    }
+} 
+
+.mini-music-player .expand {
+    position: absolute;
+    top: 3%;
+    right: 3%;
+    background: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: all .3s ease;
+}
+
+.mini-music-player .image {
+    display: grid;
+    place-content: center;
+}
+
+.mini-music-player img {
+    width: 40px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+#now-playing {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+
+    & .info {
+        width: 15ch;
+        margin-inline: auto;
+
+        & p {
+            font-weight: 500;
+            font-size: .85rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            text-align: center;
+        }
+    }
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .9rem;
+
+    & button {
+        background: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        color: white;
+        font-size: 1.25rem;
+        transition: all .2s ease-in-out;
+    }
+
+    & .play,  & .pause {
+        font-size: 1.5rem;
+        background: linear-gradient(to right, #ff6f61, #ee3124);
+        box-shadow: 0 8px 32px rgba(159, 140, 131, .3);
+        padding: 1rem;
+        border-radius: 50%;
+        display: grid;
+        place-content: center;
+
+        &:hover, &:focus {
+            transform: scale(1.1);
+            box-shadow: 0 16px 30px rgba(159, 140, 131, .6),
+                0 -8px 16px rgba(159, 140, 131, .2);
+        }
+    }
+}
+
+.hidden {
+    display: none;
+}

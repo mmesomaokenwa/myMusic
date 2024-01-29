@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  width: 100%;
+}
+
+.full-page {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: calc(100vh - 5.5rem);
+  margin-top: 5.5rem;
+}
+
+.current-page {
+  background: linear-gradient(to right, #ff6f61, #ee3124);
+  box-shadow: 0 8px 32px rgba(159, 140, 131, .3);
+}
