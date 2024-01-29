@@ -13,6 +13,7 @@ function App() {
   const [featuredPlaylists, setFeaturedPlaylists] = useState(JSON.parse(localStorage.getItem('featuredPlaylists')));
   const [topTracks, setTopTracks] = useState(JSON.parse(localStorage.getItem('topTracks')));
   const [playingNow, setPlayingNow] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -75,9 +76,12 @@ function App() {
       <Header />
       <div className='full-page'>
         <Nav />
-        <RecentlyPlayed playingNow={ playingNow} setPlayingNow={setPlayingNow} />
+        <RecentlyPlayed playingNow={playingNow} setPlayingNow={setPlayingNow}
+            isPlaying={isPlaying} setIsPlaying={setIsPlaying}
+        />
         <ExplorePage featuredPlaylists={featuredPlaylists} topTracks={topTracks}
-            playingNow={playingNow} setPlayingNow={setPlayingNow}
+          playingNow={playingNow} setPlayingNow={setPlayingNow}
+          isPlaying={isPlaying} setIsPlaying={setIsPlaying}
         />
       </div>
     </>

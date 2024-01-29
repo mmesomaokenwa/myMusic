@@ -5,7 +5,7 @@ import Playlistcard from '../../components/PlaylistCard/Playlistcard';
 import Track from '../../components/TrackList/Track';
 import './explore.css'
 
-const ExplorePage = ({ featuredPlaylists, topTracks, playingNow, setPlayingNow }) => {
+const ExplorePage = ({ featuredPlaylists, topTracks, playingNow, setPlayingNow, isPlaying, setIsPlaying }) => {
   
   return (
       <main className='explore-page'>
@@ -31,9 +31,10 @@ const ExplorePage = ({ featuredPlaylists, topTracks, playingNow, setPlayingNow }
           <h2>Top Tracks</h2>
         </div>
         <ul className="tracks">
-          {topTracks?.map(track => (
-            <Track key={track.id} track={track}
-                playingNow={playingNow} setPlayingNow={setPlayingNow}
+          {topTracks?.map((track, index) => (
+            <Track key={track.id} track={track} index={index}
+              playingNow={playingNow} setPlayingNow={setPlayingNow}
+              isLoaded={track === playingNow ? true : false} isPlaying={isPlaying} setIsPlaying={setIsPlaying}
             />
           ))}
           </ul>
