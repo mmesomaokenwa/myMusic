@@ -54,3 +54,23 @@
 .track-number {
     font-size: 1.25rem;
 }
+
+.sound-waves {
+    opacity: 0;
+}
+
+.playing {
+    color: rgb(238, 49, 36, .8)  !important;
+
+    & .track-pause-btn,  & .track-play-btn {
+        color: rgb(238, 49, 36, .8) !important;
+
+        &:hover,  &:focus {
+            color: #ee3124 !important;
+        }
+    }
+
+    .sound-waves {
+        opacity: 1;
+    }
+}

@@ -5,7 +5,7 @@ import RecentlyPlayed from '../components/RecentlyPlayed/RecentlyPlayed';
 import ExplorePage from '../screens/ExplorePage/ExplorePage';
 import { clientID, clientSecret } from '../api/client';
 import './App.css'
-import { getAccessToken, getData } from '../api/fetchFunctions';
+import { getAccessToken, getData, getTracksFromPlaylist } from '../api/fetchFunctions';
 
 
 function App() {
@@ -14,6 +14,9 @@ function App() {
   const [topTracks, setTopTracks] = useState(JSON.parse(localStorage.getItem('topTracks')));
   const [playingNow, setPlayingNow] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [currentPlaylist, setCurrentPlaylist] = useState([]);
+  const [viewedPlaylist,  setViewedPlaylist] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -47,24 +50,10 @@ function App() {
     if (featuredPlaylists && token) {
       (async () => {
         const id = featuredPlaylists[0].id;
-        let tracks = await  getData(token, `/playlists/${id}/tracks`);
-        if(!tracks) return;
-        tracks = tracks.items
-        // console.log(tracks)
-        const newTracks = tracks.map((track , index)=> {
-          return {
-            number: index + 1,
-            id:  track.track.id,
-            name: track.track.name,
-            artist: track.track.artists[0].name,
-            image: track.track.album.images[1] ? track.track.album.images[1].url : track.track.album.images[0].url,
-            audio: track.track.preview_url,
-            length:  track.track.duration_ms / 1000
-          }
-        })
-        setTopTracks(newTracks);
+        const tracks = await getTracksFromPlaylist(token, id);
+        setTopTracks(tracks);
         // console.log(newTracks)
-        localStorage.setItem("topTracks",JSON.stringify(newTracks))
+        localStorage.setItem("topTracks",JSON.stringify(tracks))
       })()
     }
   }, [featuredPlaylists])
@@ -77,11 +66,15 @@ function App() {
       <div className='full-page'>
         <Nav />
         <RecentlyPlayed playingNow={playingNow} setPlayingNow={setPlayingNow}
-            isPlaying={isPlaying} setIsPlaying={setIsPlaying}
+          isPlaying={isPlaying} setIsPlaying={setIsPlaying} currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex} currentPlaylist={currentPlaylist} setCurrentPlaylist={setCurrentPlaylist}
         />
         <ExplorePage featuredPlaylists={featuredPlaylists} topTracks={topTracks}
           playingNow={playingNow} setPlayingNow={setPlayingNow}
           isPlaying={isPlaying} setIsPlaying={setIsPlaying}
+          currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} currentPlaylist={currentPlaylist}
+          setCurrentPlaylist={setCurrentPlaylist} token={token} viewedPlaylist={viewedPlaylist} 
+          setViewedPlaylist={setViewedPlaylist}
         />
       </div>
     </>

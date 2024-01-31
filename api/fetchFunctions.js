@@ -29,3 +29,21 @@ export const getData = async (token, endpoint, baseURL = 'https://api.spotify.co
         console.log('Fetch error : ', err);
     }
 }
+
+export const getTracksFromPlaylist = async (token, id) => { 
+    let tracks = await  getData(token, `/playlists/${id}/tracks`);
+    if(!tracks) return;
+    tracks = tracks.items;
+    const newTracks = tracks.map((track , index)=> {
+        return {
+        number: index + 1,
+        id:  track.track.id,
+        name: track.track.name,
+        artist: track.track.artists[0].name,
+        image: track.track.album.images[1] ? track.track.album.images[1].url : track.track.album.images[0].url,
+        audio: track.track.preview_url,
+        length:  track.track.duration_ms / 1000
+        }
+    })
+    return newTracks;
+}

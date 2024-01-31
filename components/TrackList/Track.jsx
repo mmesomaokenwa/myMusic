@@ -4,7 +4,7 @@ import { FaPlay, FaPause } from 'react-icons/fa';
 import './Track.css';
 import { playSong, pauseSong } from '../../utilityFunctions/utilityFunctions';
 
-const Track = ({ track, index, playingNow, setPlayingNow, isLoaded, isPlaying, setIsPlaying }) => {
+const Track = ({ track, index, playingNow, setPlayingNow, isLoaded, isPlaying, setIsPlaying, currentIndex,  setCurrentIndex }) => {
   const formatToTime = (seconds) => {
     let minutes = Math.floor(seconds / 60);
     let remainingSeconds = Math.floor(seconds % 60);
@@ -13,19 +13,20 @@ const Track = ({ track, index, playingNow, setPlayingNow, isLoaded, isPlaying, s
 
   const handlePlayClick = (index) => {
     playSong();
-    document.querySelectorAll('.track-play-btn')[index].classList.add('hidden');
-    document.querySelectorAll('.track-pause-btn')[index].classList.remove('hidden');
+    document.querySelectorAll('.track-play-btn')[index]?.classList.add('hidden');
+    document.querySelectorAll('.track-pause-btn')[index]?.classList.remove('hidden');
   }
 
   const handlePauseClick = (index) => {
     pauseSong();
-    document.querySelectorAll('.track-play-btn')[index].classList.remove('hidden');
-    document.querySelectorAll('.track-pause-btn')[index].classList.add('hidden')
+    document.querySelectorAll('.track-play-btn')[index]?.classList.remove('hidden');
+    document.querySelectorAll('.track-pause-btn')[index]?.classList.add('hidden')
   };
 
   const handleTrackClick = (track, index) => {
     setIsPlaying(true);
-    setPlayingNow(track)
+    setCurrentIndex(index);
+    // setPlayingNow(currentPlaylist[currentIndex]);
     // if (!isLoaded) {
     //   setPlayingNow(track);
     // } 
@@ -57,7 +58,7 @@ const Track = ({ track, index, playingNow, setPlayingNow, isLoaded, isPlaying, s
   }, [isPlaying])
 
   return (
-    <li className='track-item' onClick={() => handleTrackClick(track, index)}>
+    <li className={isLoaded ? 'track-item playing'  : 'track-item'} onClick={() => handleTrackClick(track, index)}>
       <div className='track-info'>
         <p className="track-number">{track.number < 10 ? `0${track.number}` : track.number}</p>
         <img src={track.image} alt="track image" className="track-img" />
@@ -66,7 +67,7 @@ const Track = ({ track, index, playingNow, setPlayingNow, isLoaded, isPlaying, s
         </p>
       </div>
       <p className="duration">{formatToTime(track.length)}</p>
-      <GiSoundWaves size={32} color="" />
+      <span className="sound-waves"><GiSoundWaves size={32}/></span>
       <div className="play-and-pause">
         <button onClick={() => handlePlayClick(index)} className='track-play-btn'><FaPlay /></button>
         <button onClick={() => handlePauseClick(index)} className='track-pause-btn hidden'><FaPause /></button>

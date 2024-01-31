@@ -4,7 +4,7 @@ import { FaPause, FaPlay, FaExpandAlt } from "react-icons/fa";
 import './recently-played.css';
 import { playSong, pauseSong } from '../../utilityFunctions/utilityFunctions';
 
-const RecentlyPlayed = ({ playingNow, setPlayingNow, isPlaying, setIsPlaying }) => {
+const RecentlyPlayed = ({ playingNow, setPlayingNow, isPlaying, setIsPlaying, currentIndex, setCurrentIndex, currentPlaylist, setCurrentPlaylist }) => {
     const backgroundImageUrl = `url("${playingNow?.image}")`
 
     const handlePlayClick = () => { 
@@ -15,6 +15,22 @@ const RecentlyPlayed = ({ playingNow, setPlayingNow, isPlaying, setIsPlaying }) 
     const handlePauseClick = () => {
         pauseSong()
         setIsPlaying(false)
+    }
+
+    const playNextSong = (currentIndex) => {
+        if (currentIndex ===  currentPlaylist.length -1){
+            setCurrentIndex(0)
+        } else{
+           setCurrentIndex(prev =>  prev + 1)  
+        }
+    }
+    
+    const  playPreviousSong = (currentIndex) => {
+        if (currentIndex=== 0 ){
+            setCurrentIndex(currentPlaylist.length -1 )
+        }else{
+            setCurrentIndex(prev=>  prev - 1)
+        }
     }
 
     // console.log(playingNow)
@@ -37,12 +53,12 @@ const RecentlyPlayed = ({ playingNow, setPlayingNow, isPlaying, setIsPlaying }) 
                       <p><span id="track-name">{playingNow?.name}</span> - <span id="artist-name">{ playingNow?.artist}</span></p>
                   </div>
               </div>
-              <audio className='song' src={playingNow?.audio} onLoadedMetadata={handlePlayClick}></audio>
+              <audio className='song' src={playingNow?.audio} onLoadedMetadata={handlePlayClick} onEnded={() => playNextSong(currentIndex)}></audio>
               <div className="controls">
-                  <button className='previous'><TbPlayerTrackPrevFilled /></button>
+                  <button className='previous' onClick={e => playPreviousSong(currentIndex)}><TbPlayerTrackPrevFilled /></button>
                   <button id="play" className='play hidden' onClick={handlePlayClick}><FaPlay /></button>
                   <button className='pause' onClick={handlePauseClick}><FaPause /></button>
-                  <button className='next'><TbPlayerTrackNextFilled /></button>
+                  <button className='next' onClick={e => playNextSong(currentIndex)}><TbPlayerTrackNextFilled /></button>
               </div>
           </section>
     </aside>
