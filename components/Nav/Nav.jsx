@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom';
 import { CiSearch, CiMusicNote1 } from "react-icons/ci"
 import { IoPeopleOutline, IoAlbumsOutline } from "react-icons/io5"
 import { VscSignOut, VscSignIn } from "react-icons/vsc";
@@ -6,26 +7,33 @@ import { VscSignOut, VscSignIn } from "react-icons/vsc";
 import './nav.css'
 
 const Nav = () => {
-    const [currentPage, setCurrentPage] = useState('Explore')
 
   return (
       <nav className='main-nav'>
           <ul className="grid justify-around">
-              <li className={currentPage === 'Explore' ? 'current-page': null} onClick={(e) => setCurrentPage(document.querySelector('#explore').textContent)}>
-                  <CiSearch />
-                  <p id='explore'>Explore</p>
+              <li>
+                  <NavLink to='/' className={({ isActive }) => isActive ? 'current-page link' : 'link'}>
+                    <CiSearch />
+                    <p className='page-name'>Explore</p>
+                  </NavLink>
               </li>
-              <li className={currentPage === 'Songs' ? 'current-page': null} onClick={(e) => setCurrentPage(document.querySelector('#songs').textContent)}>
-                  <CiMusicNote1 />
-                  <p id='songs'>Songs</p>
+              <li>
+                  <NavLink to='/songs' className={({ isActive }) => isActive ? 'current-page link' : 'link'}>
+                      <CiMusicNote1 />
+                    <p className='page-name'>Songs</p>
+                  </NavLink>
               </li>
-              <li className={currentPage === 'Artists' ? 'current-page': null} onClick={(e) => setCurrentPage(document.querySelector('#artists').textContent)}>
-                  <IoPeopleOutline />
-                  <p id='artists'>Artists</p>
+              <li>
+                  <NavLink to='/artists' className={({ isActive }) => isActive ? 'current-page link' : 'link'}>
+                      <IoPeopleOutline />
+                    <p className='page-name'>Artists</p>
+                  </NavLink>
               </li>
-              <li className={currentPage === 'Albums' ? 'current-page': null} onClick={(e) => setCurrentPage(document.querySelector('#albums').textContent)}>
-                  <IoAlbumsOutline />
-                  <p id='albums'>Albums</p>
+              <li>
+                  <NavLink to='/albums' className={({ isActive }) => isActive ? 'current-page link' : 'link'}>
+                    <IoAlbumsOutline />
+                    <p className='page-name'>Albums</p>
+                  </NavLink> 
               </li>
           </ul>
           <div className="auth-btn">

@@ -8,14 +8,16 @@
 .main-nav ul {
     display: grid;
     gap: 1rem;
-    list-style: none;
+    list-style: none !important;
     font-weight: 500;
 }
 
-.main-nav li {
+.main-nav .link {
     position: relative;
     display: flex;
     align-items: center;
+    color: white;
+    text-decoration: none;
     gap: 1rem;
     padding: .7rem;
     padding-right: 2rem;
@@ -24,7 +26,7 @@
     transition: all .3s ease-in-out;
 }
 
-.main-nav li::after {
+.main-nav .link::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -37,7 +39,7 @@
     transition: all .3s ease-in-out;
 }
 
-.main-nav li:hover{
+.main-nav .link:hover{
     transform: scale(1.05);
     box-shadow: 0 16px 30px rgba(159, 140, 131, .6),
     0 -8px 16px rgba(159, 140, 131, .2);
@@ -74,3 +76,8 @@
 }
 
 
+@media (max-width: 960px) {
+    .page-name {
+        font-size: small;
+    }
+}

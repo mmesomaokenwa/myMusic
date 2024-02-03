@@ -11,7 +11,7 @@ export const getAccessToken = async (url, clientID, clientSecret) => {
         const data = await response.json();
         return data.access_token;
     } catch (err) {
-        console.log(err.message);
+        console.log(err);
     }
 }
 
@@ -24,9 +24,10 @@ export const getData = async (token, endpoint, baseURL = 'https://api.spotify.co
         });
         if (!res.ok) throw new Error(res.statusText)
         return await res.json()
+        // return await Promise.all([res.status, res.json()]);
     }
     catch (err) {
-        console.log('Fetch error : ', err);
+        console.log(err);
     }
 }
 

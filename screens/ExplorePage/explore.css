@@ -2,7 +2,7 @@
     order: 2;
     width: calc(100% - 400px);
     padding: 1rem;
-    padding-top: 2rem;
+    /* padding-top: 2rem; */
 }
 
 .section-title {
@@ -45,8 +45,13 @@
     white-space: nowrap;
     height: 100%;
     
-
     &::-webkit-scrollbar {
         display: none;
+    }
+}
+
+@media (max-width: 960px) {
+    .explore-page {
+        width: calc(100% - 300px);
     }
 }

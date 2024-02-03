@@ -1,32 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { GiMusicalNotes } from "react-icons/gi";
 import { IoHeadset } from "react-icons/io5";
 import Playlistcard from '../../components/PlaylistCard/Playlistcard';
 import Track from '../../components/TrackList/Track';
 import './explore.css';
 import { getData, getTracksFromPlaylist } from '../../api/fetchFunctions';
+import DataContext from '../../context/DataContext';
 
-const ExplorePage = ({ featuredPlaylists, topTracks, playingNow, setPlayingNow, isPlaying, setIsPlaying, currentIndex, setCurrentIndex, currentPlaylist, setCurrentPlaylist, token, viewedPlaylist, setViewedPlaylist }) => {
-  const [clicked, setClicked] = useState(false)
-  
-  useEffect(() => {
-    setPlayingNow(currentPlaylist[currentIndex])
-  }, [currentIndex, currentPlaylist])
+const ExplorePage = () => {
+  const { featuredPlaylists, topTracks, playingNow, setCurrentPlaylist, clicked, setClicked } = useContext(DataContext)
 
-  const handleClick = e => {
-    if (e?.target?.classList.value === 'play-btn' || e?.target?.classList.value === '') { 
-      const el = e?.target?.parentElement?.parentElement;
-      let element;
-      if (el?.className === 'play-btn') {
-        element = el
-      } else {
-        element = el.querySelector('.play-btn')
-      }
-      let selectedPlaylist = featuredPlaylists.filter(playlist => playlist.id === element.dataset.id)
-      selectedPlaylist = selectedPlaylist[0];
-      setClicked(selectedPlaylist)
-    }
-  }
+  const [changed, setChanged] = useState(false)
 
   const handleDocumentCLick = e => {
     if (!e.target.closest('.featured-playlist')) {
@@ -36,11 +21,12 @@ const ExplorePage = ({ featuredPlaylists, topTracks, playingNow, setPlayingNow, 
 
   useEffect(() => {
     document.querySelector('.tracks').addEventListener('click', handleDocumentCLick)
-    return () => { document.querySelector('.tracks').removeEventListener('click', handleDocumentCLick) }
+    return () => { document.querySelector('.tracks')?.removeEventListener('click', handleDocumentCLick) }
   }, [])
   // console.log(clicked.id)
   // console.log(currentPlaylist)
   // console.log(playingNow)
+  // console.log(changed)
   
   return (
       <main className='explore-page'>
@@ -51,14 +37,10 @@ const ExplorePage = ({ featuredPlaylists, topTracks, playingNow, setPlayingNow, 
         </div>
         <div className="featured-playlist" /*onClick={handleClick}*/>
           {featuredPlaylists?.map((playlist, index) => (
-            <Playlistcard
+              <Playlistcard
               key={playlist.id} index={index}
-              playlist={playlist} isPlaying={isPlaying} setIsPlaying={setIsPlaying}
-              playingNow={playingNow}
-              setPlayingNow={setPlayingNow} isLoad={playlist?.id === clicked?.id ?  true : false}
-              token={token} viewedPlaylist={viewedPlaylist} setViewedPlaylist={setViewedPlaylist}
-              currentPlaylist={currentPlaylist} setCurrentPlaylist={setCurrentPlaylist}
-              setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} clicked={clicked} setClicked={setClicked}
+              playlist={playlist} isLoad={playlist?.id === clicked?.id ?  true : false}
+               changed={changed} setChanged={setChanged}
             />
           ))}
         </div>
@@ -71,9 +53,7 @@ const ExplorePage = ({ featuredPlaylists, topTracks, playingNow, setPlayingNow, 
         <ul className="tracks" onClick={() => setCurrentPlaylist(topTracks)}>
           {topTracks?.map((track, index) => (
             <Track key={track.id} track={track} index={index}
-              playingNow={playingNow} setPlayingNow={setPlayingNow}
-              isLoaded={track.id === playingNow?.id ? true : false} isPlaying={isPlaying} setIsPlaying={setIsPlaying}
-              currentIndex={currentIndex} setCurrentIndex={setCurrentIndex}
+              isLoaded={track.id === playingNow?.id ? true : false}
             />
           ))}
           </ul>

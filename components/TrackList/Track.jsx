@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { GiSoundWaves } from "react-icons/gi";
 import { FaPlay, FaPause } from 'react-icons/fa';
 import './Track.css';
 import { playSong, pauseSong } from '../../utilityFunctions/utilityFunctions';
+import DataContext from '../../context/DataContext';
 
-const Track = ({ track, index, playingNow, setPlayingNow, isLoaded, isPlaying, setIsPlaying, currentIndex,  setCurrentIndex }) => {
+const Track = ({ track, index, isLoaded }) => {
+  const {isPlaying, setIsPlaying, setCurrentIndex} = useContext(DataContext)
+
   const formatToTime = (seconds) => {
     let minutes = Math.floor(seconds / 60);
     let remainingSeconds = Math.floor(seconds % 60);

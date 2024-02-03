@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { TbPlayerTrackNextFilled, TbPlayerTrackPrevFilled } from "react-icons/tb";
 import { FaPause, FaPlay, FaExpandAlt } from "react-icons/fa";
 import './recently-played.css';
 import { playSong, pauseSong } from '../../utilityFunctions/utilityFunctions';
+import DataContext from '../../context/DataContext';
 
-const RecentlyPlayed = ({ playingNow, setPlayingNow, isPlaying, setIsPlaying, currentIndex, setCurrentIndex, currentPlaylist, setCurrentPlaylist }) => {
+const RecentlyPlayed = () => {
+    const { playingNow, setIsPlaying, currentIndex, setCurrentIndex, currentPlaylist} = useContext(DataContext)
+
     const backgroundImageUrl = `url("${playingNow?.image}")`
 
     const handlePlayClick = () => { 
