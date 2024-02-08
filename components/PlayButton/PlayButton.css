@@ -1,0 +1,26 @@
+#play-btn, #pause-btn, #shuffle-btn {
+    display: grid;
+    place-content: center;
+    color: white;
+    font-size: 1.3rem;
+    padding: 1rem;
+    background: linear-gradient(to right, #ff6f61, #ee3124);
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 8px 32px rgba(159, 140, 131, .3);
+    transition: all .3s ease;
+
+    &:hover,
+    &:focus {
+        transform: scale(1.1);
+        box-shadow: 0 16px 30px rgba(159, 140, 131, .6),
+            0 -8px 16px rgba(159, 140, 131, .2);
+    }
+}
+
+#shuffle-btn {
+    font-size: 1.3rem !important;
+    background: transparent !important;
+}

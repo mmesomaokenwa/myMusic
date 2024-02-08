@@ -1,0 +1,24 @@
+.go-back {
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+
+    color: black;
+    background: rgb(255, 255, 255, .2);
+    backdrop-filter: saturate(48%) blur(5px);
+    box-shadow: inset 0.75rem 0.75rem 1rem rgba(0, 0, 0, .1),
+        -0.75rem -0.75rem 1rem rgba(0, 0, 0, .1);
+    border-top-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    outline: none;
+    border: none;
+
+    cursor: pointer;
+    z-index: 999;
+
+    svg {
+        fill: black;
+        height: 40px;
+        width: auto;
+    }
+}

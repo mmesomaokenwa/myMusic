@@ -1,28 +1,30 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaPause, FaPlay } from "react-icons/fa";
 import { getData, getTracksFromPlaylist } from '../../api/fetchFunctions';
 import './PlaylistCard.css';
 import { playSong, pauseSong } from '../../utilityFunctions/utilityFunctions';
+import { PlayButton, PauseButton } from '../PlayButton/PlayButton';
 import DataContext from '../../context/DataContext';
+import { useQuery } from 'react-query';
 
 const Playlistcard = ({ playlist, index, changed, setChanged, isLoad }) => {
     const {token, setCurrentPlaylist, setCurrentIndex, isPlaying, setIsPlaying, clicked, setClicked} = useContext(DataContext)
 
     const backgroundImageUrl = `url("${playlist.image}")`;
     const navigate = useNavigate();
-    
-    useEffect(() => {
-      if (clicked) {
-        (async () => {
-        const tracks = await getTracksFromPlaylist(token, clicked.id);
-        if (!tracks) return;
-        if (isPlaying && changed) {
-            setCurrentPlaylist(tracks);
+
+    const { data: tracks, error, isLoading } = useQuery(
+        ['tracks', clicked],
+        async () => { const response = await getTracksFromPlaylist(token, clicked.id); if (response) return response; throw new Error('Failed to fetch tracks') },
+        {
+            enabled: clicked && clicked.id === playlist.id,
+            onSuccess: (tracks) => { 
+                if (isPlaying && changed) setCurrentPlaylist(tracks)
+            },
+            onError: (err) => console.log('Failed to fetch tracks',  err),
+            staleTime: Infinity // Keep the data fresh forever until it's no longer needed
         }
-        })()
-      }
-    }, [clicked]);
+    )
      
 
     useEffect(() => {
@@ -71,7 +73,7 @@ const Playlistcard = ({ playlist, index, changed, setChanged, isLoad }) => {
         setIsPlaying(false);
         pauseSong()
     };
-    // if (playingNow) console.log(playingNow.id);
+    
   return (
       <div key={playlist.id}
           className='playlist-card'
@@ -83,8 +85,8 @@ const Playlistcard = ({ playlist, index, changed, setChanged, isLoad }) => {
                 <p className="playlist-name">{playlist.name}</p>
                 <p className="track-length">{ `${playlist.length} Songs`}</p>
             </div>
-            <button data-id={ playlist.id} className="play-btn" onClick={handlePlayClick}><FaPlay /></button>
-            <button data-id={playlist.id} className="pause-btn hidden"  onClick={handlePauseClick}><FaPause /></button>
+            <PlayButton className='play-btn' onClick={handlePlayClick} />
+            <PauseButton className='pause-btn hidden' onClick={handlePauseClick} />
         </div>
     </div>
   )

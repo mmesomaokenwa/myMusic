@@ -5,7 +5,7 @@ import { getAccessToken, getData, getTracksFromPlaylist } from '../api/fetchFunc
 const DataContext = createContext({});
 
 export const DataProvider = ({ children }) => {
-    const [token, setToken] = useState(JSON.parse(localStorage.getItem('token')));
+    const [token, setToken] = useState();
     const [featuredPlaylists, setFeaturedPlaylists] = useState(JSON.parse(localStorage.getItem('featuredPlaylists')));
     const [topTracks, setTopTracks] = useState([]);
     const [playingNow, setPlayingNow] = useState(null);

@@ -1,0 +1,20 @@
+.artists-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    overflow-x: auto;
+    list-style: none;
+    padding: 1rem .5rem;
+
+    &::-webkit-scrollbar {
+        height: 0px;
+        margin-top: .5rem;
+    }
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #ddd;
+        border-radius: 4px;
+    }
+}

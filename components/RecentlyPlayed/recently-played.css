@@ -41,6 +41,7 @@
         position: absolute;
         content: '';
         inset: 0;
+        background-color: rgb(0, 0, 0, 0.5);
         backdrop-filter: blur(6px);
         z-index: -1;
     }
@@ -97,7 +98,7 @@
     justify-content: center;
     gap: .9rem;
 
-    & button {
+    & .next,  & .previous {
         background: transparent;
         border: none;
         outline: none;
@@ -105,22 +106,6 @@
         color: white;
         font-size: 1.25rem;
         transition: all .2s ease-in-out;
-    }
-
-    & .play,  & .pause {
-        font-size: 1.5rem;
-        background: linear-gradient(to right, #ff6f61, #ee3124);
-        box-shadow: 0 8px 32px rgba(159, 140, 131, .3);
-        padding: 1rem;
-        border-radius: 50%;
-        display: grid;
-        place-content: center;
-
-        &:hover, &:focus {
-            transform: scale(1.1);
-            box-shadow: 0 16px 30px rgba(159, 140, 131, .6),
-                0 -8px 16px rgba(159, 140, 131, .2);
-        }
     }
 }
 

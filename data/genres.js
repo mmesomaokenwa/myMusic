@@ -1,0 +1,3 @@
+export default [
+    'acoustic', 'afrobeat', 'african', 'brazil', 'british', 'blues', 'chill', 'classical', 'club', 'country', 'dance', 'dancehall', 'electronic', 'folk', 'french', 'german', 'gospel', 'groove', 'guitar', 'happy', 'heavy-metal', 'hip-hop', 'holidays', 'jazz', 'k-pop', 'new-release', 'party', 'pop', 'r-n-b', 'reggae', 'rock', 'romance', 'sad', 'salsa', 'sleep', 'spanish', 'soundtracks', 'tango', 'trip-hop', 'work-out', 'world-music'
+]

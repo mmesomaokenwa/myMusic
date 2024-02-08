@@ -13,6 +13,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    border: 1px solid gray;
     border-radius: var(--border-radius);
     padding: .5rem;
     cursor: pointer;
@@ -34,7 +35,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(255, 255, 255, .2);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
     backdrop-filter:  blur(10px) saturate(.7);
     z-index: 1;
     padding: 1rem;
@@ -55,27 +56,6 @@
 
 .track-length {
     font-size: .8rem;
-}
-
-.playlist-info button {
-    display: grid;
-    place-content: center;
-    color: white;
-    font-size: 1.3rem;
-    padding: 1rem;
-    background: linear-gradient(to right, #ff6f61, #ee3124);
-    border: none;
-    outline: none;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 8px 32px rgba(159, 140, 131, .3);
-    transition: all .3s ease;
-
-    &:hover, &:focus {
-        transform: scale(1.1);
-        box-shadow: 0 16px 30px rgba(159, 140, 131, .6),
-        0 -8px 16px rgba(159, 140, 131, .2);
-    }
 }
 
 .play-btn {

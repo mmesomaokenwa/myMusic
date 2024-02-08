@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { TbPlayerTrackNextFilled, TbPlayerTrackPrevFilled } from "react-icons/tb";
-import { FaPause, FaPlay, FaExpandAlt } from "react-icons/fa";
+import { FaExpandAlt } from "react-icons/fa";
+import { PlayButton, PauseButton } from '../PlayButton/PlayButton';
 import './recently-played.css';
 import { playSong, pauseSong } from '../../utilityFunctions/utilityFunctions';
 import DataContext from '../../context/DataContext';
@@ -9,6 +10,8 @@ const RecentlyPlayed = () => {
     const { playingNow, setIsPlaying, currentIndex, setCurrentIndex, currentPlaylist} = useContext(DataContext)
 
     const backgroundImageUrl = `url("${playingNow?.image}")`
+
+    const playBtnSize = {fontSize : '1.5rem'}
 
     const handlePlayClick = () => { 
         playSong();
@@ -59,8 +62,8 @@ const RecentlyPlayed = () => {
               <audio className='song' src={playingNow?.audio} onLoadedMetadata={handlePlayClick} onEnded={() => playNextSong(currentIndex)}></audio>
               <div className="controls">
                   <button className='previous' onClick={e => playPreviousSong(currentIndex)}><TbPlayerTrackPrevFilled /></button>
-                  <button id="play" className='play hidden' onClick={handlePlayClick}><FaPlay /></button>
-                  <button className='pause' onClick={handlePauseClick}><FaPause /></button>
+                  <PlayButton className='play' onClick={handlePlayClick} style={playBtnSize}/>
+                  <PauseButton className='pause hidden' onClick={handlePauseClick} style={playBtnSize}/>
                   <button className='next' onClick={e => playNextSong(currentIndex)}><TbPlayerTrackNextFilled /></button>
               </div>
           </section>
