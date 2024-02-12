@@ -24,9 +24,20 @@
 }
 
 body {
-  padding: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+@media (max-width: 960px) {
+  body {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 0;
+  }
 }

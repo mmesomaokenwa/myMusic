@@ -1,18 +1,7 @@
-.explore-page {
-    order: 2;
-    width: calc(100% - 400px);
-    padding: 1rem;
-    /* padding-top: 2rem; */
-}
-
 .section-title {
     display: flex;
     align-items: center;
     gap: 1rem;
-
-    & h2 {
-        font-size: 1.2rem;
-    }
 }
 
 .featured-playlist {
@@ -21,6 +10,7 @@
     gap: 1rem;
     overflow-x: auto;
     white-space: nowrap;
+    padding: .5rem 0rem;
 
     &::-webkit-scrollbar {
         display: none;
@@ -28,8 +18,8 @@
 }
 
 .top-tracks-section {
-    height: calc(100% - 300px);
-    margin-top: .5rem;
+    height: 100%;
+    padding-top: .5rem;
 }
 
 .tracks {
@@ -40,14 +30,16 @@
     overflow-x: hidden;
     white-space: nowrap;
     height: 100%;
+    padding: .5rem 0rem;
     
     &::-webkit-scrollbar {
         display: none;
     }
 }
 
-@media (max-width: 960px) {
+/* @media (max-width: 960px) {
     .explore-page {
         width: calc(100% - 300px);
     }
-}
+} */
+

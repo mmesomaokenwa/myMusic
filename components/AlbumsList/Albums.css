@@ -1,6 +1,5 @@
-.artists-list {
+.albums-list {
     display: flex;
-    align-items: center;
     flex-wrap: nowrap;
     gap: 1rem;
     overflow-x: auto;
@@ -9,18 +8,11 @@
 
     &::-webkit-scrollbar {
         height: 0px;
-        margin-top: .5rem;
-    }
-    
-    /* Handle */
-    &::-webkit-scrollbar-thumb {
-        background: #ddd;
-        border-radius: 4px;
     }
 }
 
 @media (max-width: 640px) {
-    .artists-list {
+    .albums-list {
         padding: .5rem 0rem;
     }
 }

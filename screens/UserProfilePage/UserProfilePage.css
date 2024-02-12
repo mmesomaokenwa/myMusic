@@ -1,0 +1,38 @@
+.user-profile-page > * {
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 1rem;
+    padding: 1rem;
+
+    & > * {
+        display: grid;
+        place-content: center;
+        justify-items: center;
+        gap: .5rem;
+    }
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid white;
+}
+
+.profile-container button {
+    padding: 1rem;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    border-radius: var(--border-radius);
+    color: #fff;
+    background: linear-gradient(to right, #ff6f61, #ee3124);
+    cursor: pointer;
+}
+
+.logout {
+    margin-top: 1rem;
+    background: transparent !important;
+    border: 1px solid white !important;
+}

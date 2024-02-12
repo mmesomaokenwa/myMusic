@@ -28,18 +28,18 @@ header {
     color: #ff6f61;
 }
 
-form {
+.search-bar {
     flex-grow: 1;
     position: relative;
 }
 
-form label {
+.search-bar label {
     cursor: pointer;
     position: absolute;
     top: .65rem;
     left: .5rem;
 }
-form input {
+.search-bar input {
     background-color: #414141;
     color: #fff;
     border: none;
@@ -80,5 +80,43 @@ form input {
         background: linear-gradient(to right, #ff6f61, #ee3124);
         box-shadow: 0 16px 30px rgba(159, 140, 131, .6),
         0 -8px 16px rgba(159, 140, 131, .2);
+    }
+}
+
+.header-nav button {
+    display: grid;
+    place-content: center;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.header-nav img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}
+
+@media (max-width: 640px) {
+    header {
+        gap: 1rem;
+    }
+
+    .logo-and-title .title {
+        display: none;
+    }
+
+    .logo-and-title > :not(.title) {
+        font-size: 3.5rem;
+    }
+
+    .header-nav ul {
+        gap: 0rem;
+    }
+
+    .header-nav p {
+        display: none;
     }
 }

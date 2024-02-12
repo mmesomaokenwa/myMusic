@@ -33,7 +33,7 @@
     align-items: center;
     justify-content: space-between;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
-    backdrop-filter:  blur(10px) saturate(.7);
+    /* backdrop-filter:  blur(10px) saturate(.7); */
     z-index: 1;
     padding: .5rem;
     padding-block: 1rem;
@@ -54,4 +54,19 @@
        font-size: small;
        font-weight: 600;
    }
+}
+
+@media (max-width: 680px) {
+    .album-card {
+        width: 180px;
+        height: 200px;
+    }
+
+    .album-card-info {
+        width: 100%;
+    }
+
+    .card-play-btn {
+        display: none !important;
+    }
 }

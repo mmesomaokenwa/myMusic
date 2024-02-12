@@ -1,6 +1,4 @@
 .recently-played-aside {
-    width: 250px;
-    order: 3;
     display: flex;
     flex-direction: column;
     padding: 2rem;

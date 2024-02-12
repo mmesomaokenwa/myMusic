@@ -1,0 +1,15 @@
+.albums-page {
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 1px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #ddd;
+    }
+
+    & section {
+        width: 100%;
+    }
+}

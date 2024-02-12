@@ -7,7 +7,7 @@ import { PlayButton, PauseButton, ShuffleButton } from '../../components/PlayBut
 import { playSong, pauseSong } from '../../utilityFunctions/utilityFunctions';
 import Track from '../../components/TrackList/Track';
 import DataContext from '../../context/DataContext';
-// import ArtistsInfoPageSkeleton from '../../skeletons/ArtistsInfoPageSkeleton/ArtistsInfoPageSkeleton';
+import PlaylistInfoSkeleton from '../../skeletons/PlaylistInfoSkeleton/PlaylistInfoSkeleton';
 import AlbumCard from '../../components/AlbumCard/AlbumCard';
 import './ArtistsInfoPage.css'
 
@@ -113,7 +113,7 @@ const ArtistsInfoPage = () => {
     const genre = viewedArtist?.genres?.map((genre) => genre).join(', ') || '';
 
     if (isLoading || albumsIsLoading || tracksIsLoading) {
-      return <div>Loading ...</div>
+      return <PlaylistInfoSkeleton />
     }
     
     if (error || albumsError || tracksError) {

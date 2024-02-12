@@ -114,3 +114,19 @@ export const searchTracksByAlbum = async (token, albumId) => {
         }
     })
 }
+
+export const searchAlbumsByGenre = async (token, genre) => {
+    let albums = await getData(token, `/search?q=${encodeURIComponent(`genre:"${genre}"`)}&type=album`);
+    if (!albums) return;
+    albums = albums.albums.items;
+    console.log(albums);
+    return albums.map(album => {
+        return {
+            id: album.id,
+            name: album.name,
+            image: album.images[0] ? album.images[0].url : '',
+            releaseDate: album.release_date,
+            albumType: album.album_type
+        }
+    })
+}

@@ -1,6 +1,5 @@
 .main-nav {
     padding: 2rem;
-    margin-left: -2rem;
     background-color: #111111;
     border-radius: var(--border-radius);
 }
@@ -79,5 +78,36 @@
 @media (max-width: 960px) {
     .page-name {
         font-size: small;
+    }
+}
+
+
+@media (max-width: 640px) {
+    .main-nav .link {
+        flex-direction: column;
+        gap: 0rem;
+        padding-right: .7rem;
+    }
+
+    .page-name {
+        font-size: .7rem;
+    }
+
+    .main-nav {
+        order: 2;
+        padding: 1rem 2rem;
+    }
+
+    .main-nav ul {
+        grid-template-columns: repeat(4, 1fr);
+        gap: .5rem;
+    }
+
+    .main-nav .link {
+        font-size: large;
+    }
+
+    .auth-btn {
+        display: none;
     }
 }
